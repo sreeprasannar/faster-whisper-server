@@ -21,4 +21,5 @@ ENV WHISPER__MODEL=Systran/faster-whisper-large-v3
 ENV WHISPER__INFERENCE_DEVICE=auto
 ENV UVICORN_HOST=0.0.0.0
 ENV UVICORN_PORT=8000
+RUN uv run python -c "import huggingface_hub; model_name = 'Systran/faster-whisper-large-v3'; huggingface_hub.snapshot_download(model_name, repo_type='model')"
 CMD ["uv", "run", "uvicorn", "faster_whisper_server.main:app"]
